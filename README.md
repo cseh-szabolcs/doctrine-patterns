@@ -73,14 +73,14 @@ class FooCollection1Query implements QueryInterface
     {
         // $qb->select()->join()-> ...
         if ($this->$depencency1 === 'foo') {
-            $this->joinMore($qb);
+            $this->someHelperMethod($qb);
         }
         // return $qb->getQuery()->getResult()...
     }
     
-    private function joinMore(QueryBuilder $qb)
+    private function someHelperMethod(QueryBuilder $qb)
     {
-        // more stuff...
+        // join more stuff...
     }
 }
 ```
