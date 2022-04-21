@@ -1,9 +1,9 @@
 <?php
 
-namespace Singles\Bundle\CoreBundle\Query;
+namespace CS\DoctrinePatterns\Query;
 
+use CS\DoctrinePatterns\Repository\RepositoryInterface;
 use Doctrine\ORM\QueryBuilder;
-use Singles\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**
  * @usage:

@@ -1,10 +1,11 @@
 <?php
 
-namespace Singles\Bundle\CoreBundle\Repository;
+namespace CS\DoctrinePatterns\Repository;
 
-use Singles\Bundle\CoreBundle\Exception\NotFoundException;
-use Singles\Bundle\CoreBundle\Query\QueryInterface;
-use Singles\Bundle\CoreBundle\Query\ResultExpectation;
+use CS\DoctrinePatterns\Entity\IdInterface;
+use CS\DoctrinePatterns\Query\QueryInterface;
+use CS\DoctrinePatterns\Query\ResultExpectation;
+use Doctrine\ORM\NoResultException;
 use Traversable;
 
 /**
@@ -22,8 +23,8 @@ interface RepositoryInterface
      * @param array $params
      * @param bool $return
      *
-     * @return object|ResultExpectation
-     * @throws NotFoundException
+     * @return IdInterface|ResultExpectation
+     * @throws NoResultException
      */
     public function getOne(QueryInterface $query, array $params = [], $return = self::RESULT_GET);
 

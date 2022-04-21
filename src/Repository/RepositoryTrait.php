@@ -1,34 +1,16 @@
 <?php
 
-namespace Singles\Bundle\CoreBundle\Repository;
+namespace CS\DoctrinePatterns\Repository;
 
-use Doctrine\Common\Annotations\Reader;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
+use CS\DoctrinePatterns\Entity\IdInterface;
+use CS\DoctrinePatterns\Query\QueryInterface;
+use CS\DoctrinePatterns\Query\ResultExpectation;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
-use InvalidArgumentException;
-use JMS\Serializer\Annotation\Groups;
-use ReflectionClass;
-use Singles\Bundle\CoreBundle\Component\Reflection;
-use Singles\Bundle\CoreBundle\Entity\IdInterface;
-use Singles\Bundle\CoreBundle\Entity\PartiallyUpdatableInterface;
-use Singles\Bundle\CoreBundle\Exception\NotFoundException;
-use Singles\Bundle\CoreBundle\Model\RemovedEntity;
-use Singles\Bundle\CoreBundle\Query\QueryInterface;
-use Singles\Bundle\CoreBundle\Query\ResultExpectation;
-use Singles\Bundle\CoreBundle\Traits\MasterSlaveConnectionTrait;
 
 
-abstract class AbstractRepository extends EntityRepository implements RepositoryInterface
+trait RepositoryTrait
 {
-    use MasterSlaveConnectionTrait;
-
-    /**
-     * @var Reader
-     */
-    private $reader;
-
 
     /**
      * @inheritDoc
@@ -38,7 +20,7 @@ abstract class AbstractRepository extends EntityRepository implements Repository
         $result = $this->fetchOne($query, $params, $return);
 
         if (is_null($result)) {
-            throw new NotFoundException('Resource not found.');
+            throw new NoResultException('Resource not found.');
         }
 
         return $result;

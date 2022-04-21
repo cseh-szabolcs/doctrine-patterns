@@ -1,6 +1,6 @@
 <?php
 
-namespace Singles\Bundle\CoreBundle\Query;
+namespace CS\DoctrinePatterns\Query;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -17,9 +17,9 @@ final class ResultExpectation
     private $qb;
 
     /**
-     * @var ParameterBag
+     * @var array
      */
-    private $options;
+    private $context = [];
 
 
     /**
@@ -51,11 +51,31 @@ final class ResultExpectation
         return $this->qb;
     }
 
+
     /**
-     * @return ParameterBag
+     * @param string|null $key
+     * @param mixed $default
+     * @return array|mixed
      */
-    public function getOptions()
+    public function getContext($key = null, $default = null)
     {
-        return $this->options;
+        if (is_string($key)) {
+            return array_key_exists($key, $this->context)
+                ? $this->context[$key]
+                : $default;
+        }
+        return $this->context;
+    }
+
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function setContext($key, $value)
+    {
+        $this->context[$key] = $value;
+        return $this;
     }
 }

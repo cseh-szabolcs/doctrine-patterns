@@ -1,9 +1,10 @@
 <?php
 
-namespace Singles\Bundle\CoreBundle\Query;
+namespace CS\DoctrinePatterns\Query;
 
+use CS\DoctrinePatterns\Entity\IdInterface;
+use CS\DoctrinePatterns\Repository\RepositoryInterface;
 use Doctrine\ORM\QueryBuilder;
-use Singles\Bundle\CoreBundle\Repository\RepositoryInterface;
 use Traversable;
 
 /**
@@ -11,16 +12,11 @@ use Traversable;
  * @usage:
  *
  *   // instead
- *   $foo = $someRepository->fetchFooList1();
- *   $foo = $someRepository->fetchFooList2();
- *   $bar = $someRepository->fetchBarEntity1();
- *   $bar = $someRepository->fetchBarEntity2();
- *
+ *   $foo = $someRepository->fetchFooList();
+ *   $bar = $someRepository->fetchBarEntity();
  *   // use this
- *   $foo = $someRepository->fetchCollection(new FooQuery1());
- *   $foo = $someRepository->fetchCollection(new FooQuery2());
- *   $bar = $someRepository->fetchOne(new BarQuery1());
- *   $bar = $someRepository->fetchOne(new BarQuery2());
+ *   $foo = $someRepository->fetchCollection(new FooQuery());
+ *   $bar = $someRepository->fetchOne(new BarQuery());
  *
  */
 interface QueryInterface
@@ -32,7 +28,7 @@ interface QueryInterface
      * @param RepositoryInterface $scope
      * @param array $params
      *
-     * @return object|Traversable|QueryBuilder|ResultExpectation
+     * @return IdInterface|Traversable|QueryBuilder|ResultExpectation
      *   -> when QueryBuilder is returned, the repository will fetch the result.
      *   -> when ResultExpectation is returned, the repository will fetch the result but will also apply the given expectation-options.
      *
