@@ -74,11 +74,11 @@ class FooCollection1Query implements QueryInterface
      */
     public function __invoke(QueryBuilder $qb, RepositoryInterface $scope, array $params = [])
     {
+        // here you can write all the logic like you want
         // $qb->select()->join()-> ...
-        if ($this->depencency1 === 'foo') {
-            $this->someHelperMethod($qb);
-        }
-        // return $qb->getQuery()->getResult()...
+        // if ($this->depencency1 === 'foo') $this->someHelperMethod($qb) ...
+        
+        return $qb->getQuery()->getResult();
     }
     
     private function someHelperMethod(QueryBuilder $qb)
