@@ -2,12 +2,10 @@
 
 namespace CS\DoctrinePatterns\Repository;
 
-use CS\DoctrinePatterns\Entity\IdInterface;
 use CS\DoctrinePatterns\Query\QueryInterface;
 use CS\DoctrinePatterns\Query\ResultExpectation;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
-
 
 trait RepositoryTrait
 {
