@@ -85,7 +85,7 @@ class FooCollection1Query implements QueryInterface
 }
 ```
 
-3.) Now you can use this query-classes wherever you want:
+3.) After you have your query-classes you can use them wherever you want:
 
 ```
 $query1 = new FooCollection1Query($depencency1, $depencency2);
