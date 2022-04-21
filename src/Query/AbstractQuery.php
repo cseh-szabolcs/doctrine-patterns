@@ -6,10 +6,8 @@ use CS\DoctrinePatterns\Repository\RepositoryInterface;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * @usage:
- *  $someRepo->fetchOne(FooQuery::create());
- *  $someRepo->fetchCollection(BarQuery::create());
- *
+ * Allows to write more simple query-classes and provides a create-method for query-classes,
+ * which does not used as services.
  */
 abstract class AbstractQuery implements QueryInterface
 {

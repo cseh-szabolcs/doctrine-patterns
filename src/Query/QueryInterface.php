@@ -9,15 +9,6 @@ use Traversable;
 
 /**
  * Query-classes can help to keep repository-classes more simple.
- * @usage:
- *
- *   // instead
- *   $foo = $someRepository->fetchFooList();
- *   $bar = $someRepository->fetchBarEntity();
- *   // use this
- *   $foo = $someRepository->fetchCollection(new FooQuery());
- *   $bar = $someRepository->fetchOne(new BarQuery());
- *
  */
 interface QueryInterface
 {

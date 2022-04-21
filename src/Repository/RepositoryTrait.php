@@ -7,9 +7,11 @@ use CS\DoctrinePatterns\Query\ResultExpectation;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 
+/**
+ * Contains all methods to handle query-classes, which the RepositoryInterface provides.
+ */
 trait RepositoryTrait
 {
-
     /**
      * @inheritDoc
      */
