@@ -34,8 +34,8 @@ $entity2 = $fooRepository->fetchEntityBySomeJoinMethod2();
 
 #### Solution
 
-1.) Create the repository-class which implements the RepositoryInterface or just extend
-the abstract repository-class:
+1.) Create the repository-class which implements the RepositoryInterface and use
+the RepositoryTrait or just extend the AbstractRepository-class:
 
 ```
 namespace App\Repository;
@@ -45,12 +45,12 @@ use CS\DoctrinePatterns\Repository\RepositoryTrait;
 
 class FooRepository implements RepositoryInterface 
 {
-   use RepositoryTrait;
+    use RepositoryTrait;
 }
 ```
 
 2.) Create a custom query-class, which implements the QueryInterface. The interface
-just requires the __invoke-method:
+requires the __invoke-method, where you write your queries and return the result:
 
 ```
 namespace App\Query;
@@ -71,16 +71,21 @@ class FooCollection1Query implements QueryInterface
      */
     public function __invoke(QueryBuilder $qb, RepositoryInterface $scope, array $params = [])
     {
-        $qb->select()->join()-> ...
+        // $qb->select()->join()-> ...
         if ($this->$depencency1 === 'foo') {
-            $qb->join() ....
+            $this->joinMore($qb);
         }
-        return $qb->getQuery()->getResult()...
+        // return $qb->getQuery()->getResult()...
+    }
+    
+    private function joinMore(QueryBuilder $qb)
+    {
+        // more stuff...
     }
 }
 ```
 
-3.) Now you can just use this classes:
+3.) Now you can use this query-classes wherever you want:
 
 ```
 $query1 = new FooCollection1Query($depencency1, $depencency2);
