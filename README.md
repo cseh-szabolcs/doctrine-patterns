@@ -50,7 +50,7 @@ class FooRepository implements RepositoryInterface
 Now the repository-class will contain all the fetch-methods,
 which the [RepositoryInterface](./src/Repository/RepositoryInterface.php) requires. 
 
-2.) Create **custom query-classes**, which implements the [QueryInterface](./src/Repository/QueryInterface.php). 
+2.) Create **custom query-classes**, which implements the [QueryInterface](./src/Query/QueryInterface.php). 
 The interface requires only the **__invoke**-method, where you write your queries and return the result. This
 classes can contain their own dependencies, helper-method - however you want, but they are isolated
 from the main repository-class.
