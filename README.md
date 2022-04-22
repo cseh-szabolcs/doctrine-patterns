@@ -13,8 +13,8 @@ dependencies. These classes will grow and it is just a matter of time before the
 The idea is to split big fetch-methods which depends on dependencies in multiple query-classes 
 to keep the repository-classes simple.
 
-In this example **FooRepository**-class has a lot of methods and dependencies and 
-could look like this:
+In the following example the **FooRepository**-class implements two methods to get collections and two methods
+to get single entities, but there could be many more and the code in the class very long:
 
 ```
 $fooRepository = new FooRepository(
@@ -30,6 +30,9 @@ $collection2 = $fooRepository->fetchCollectionMethod2();
 $entity1 = $fooRepository->fetchEntityBySomeJoinMethod1();
 $entity2 = $fooRepository->fetchEntityBySomeJoinMethod2();
 ```
+
+We should move this methods in **separate classes** which can have their own dependencies, to
+keep the repository-class simple.
 
 #### Solution
 
@@ -88,11 +91,13 @@ class FooCollection1Query implements QueryInterface
 }
 ```
 
-3.) After you have your query-classes implemented just use them wherever you want:
+3.) After we have our query-classes implemented we can use them wherever we want.
+We always call the same **fetchCollection** to get collections or **fetchOne** to
+get single entities and just change the query-class:
 
 ```
 $query1 = new FooCollection1Query($depencency1, $depencency2);
-$query2 = new FooCollection2Query($other, $dependencies);
+$query2 = new FooCollection2Query($other, $depencency);
 $query3 = new FooEntity1Query();
 $query4 = new FooEntity2Query();
 
@@ -103,5 +108,5 @@ $foo1 = $fooRepository->fetchOne($query3);
 $foo2 = $fooRepository->fetchOne($query4);
 ```
 
-**In Symfony projects, you can use the query-classes as services. and use autowiring 
-to inject all dependencies.**
+In Symfony projects, the query-classes can be used as **services** with **autowiring** 
+to inject all dependencies!
