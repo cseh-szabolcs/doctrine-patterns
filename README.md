@@ -5,7 +5,7 @@
 
 In large projects, repository-classes will contain a lot of fetch-methods which requires their own
 dependencies. These classes will grow and it is just a matter of time before the 
-**single-responsibility principle** is violated!
+**single-responsibility principle** is violated! (oh my goodness!!! :-p)
 
 
 #### Basic idea
